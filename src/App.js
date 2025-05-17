@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './App.css';  // 👈 Import custom CSS
+import './App.css';
 
 function App() {
   const [maskedImg, setMaskedImg] = useState(null);
@@ -25,21 +25,25 @@ function App() {
   };
 
   return (
-    <div className="container">
-      <div className="card">
-        <h2>Mask PII from Aadhaar</h2>
+    <div className="wrapper">
+      <div className="app-card">
+        <header className="header">
+          <img src="https://img.icons8.com/ios-filled/100/shield.png" alt="Shield Icon" />
+          <h1>PII Masking Tool</h1>
+          <p>Upload Aadhaar images securely and get sensitive info masked in seconds.</p>
+        </header>
 
         <label className="upload-btn">
-          Select Image
-          <input type="file" onChange={handleUpload} hidden />
+          Upload Aadhaar Image
+          <input type="file" accept="image/*" onChange={handleUpload} hidden />
         </label>
 
-        {loading && <p className="status">Processing image...</p>}
+        {loading && <p className="status">🔐 Processing image...</p>}
 
         {maskedImg && (
           <div className="result">
-            <img src={maskedImg} alt="Masked Aadhaar" />
-            <a href={maskedImg} download="masked_aadhaar.png">Download Image</a>
+            <img src={maskedImg} alt="Masked Aadhaar" className="fade-in" />
+            <a href={maskedImg} download="masked_aadhaar.png">📥 Download Masked Image</a>
           </div>
         )}
       </div>
